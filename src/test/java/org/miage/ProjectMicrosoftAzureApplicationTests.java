@@ -1,4 +1,4 @@
-package org.progllenge.citydating;
+package org.miage;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
