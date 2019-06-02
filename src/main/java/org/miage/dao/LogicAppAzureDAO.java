@@ -1,8 +1,9 @@
-package org.miage;
+package org.miage.dao;
 
 import java.net.URI;
 import java.util.List;
 
+import org.miage.model.Commune;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;

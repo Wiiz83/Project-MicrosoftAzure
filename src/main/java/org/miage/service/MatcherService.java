@@ -1,5 +1,9 @@
-package org.miage;
+package org.miage.service;
 
+import org.miage.dao.LogicAppAzureDAO;
+import org.miage.model.Classement;
+import org.miage.model.Commune;
+import org.miage.model.Formulaire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +20,16 @@ public class MatcherService {
 	private LogicAppAzureDAO logicApp;
 	
 	public List<Classement> construireClassementVilles(Formulaire formulaire){
-		List<Commune> communes = logicApp.getCommunes();
-		
 		
 		System.out.println("YOLOLO");
 		
 		return null;
+		
+	}
+	
+	public void updateDetailsCommunes() {
+		List<Commune> communes = logicApp.getCommunes();
+		
 		
 	}
 

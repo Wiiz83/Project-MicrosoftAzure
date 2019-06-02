@@ -1,4 +1,4 @@
-package org.miage;
+package org.miage.model;
 
 import java.util.HashMap;
 import java.util.List;

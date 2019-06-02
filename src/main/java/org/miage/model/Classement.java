@@ -1,4 +1,4 @@
-package org.miage;
+package org.miage.model;
 
 /**
  * @author uzanl
