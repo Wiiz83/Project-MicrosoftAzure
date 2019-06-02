@@ -11,7 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
@@ -42,14 +46,49 @@ public class CSVReaderDAO {
 	
 	
 	public List<ProfilCSV> loadProfils() {
+		/*
+		String s = "aa,bbb,c,dd";
+		ObjectMapper objectMapper = new CsvMapper();
+		try {
+			String[] array = objectMapper.readValue(s, String[].class);
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+		
+		
+		/*
 		MappingIterator<ProfilCSV> personIter = null;
 		try {
-			File csvFile = new ClassPathResource("static/profils.csv").getFile();
+			File csvFile = new ClassPathResource("static/users.csv").getFile();
 			personIter = new CsvMapper().readerWithTypedSchemaFor(ProfilCSV.class).readValues(csvFile);
 			return personIter.readAll();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}*/
+		
+		
+		CsvMapper csvMapper = new CsvMapper();
+        CsvSchema csvSchema = csvMapper.typedSchemaFor(ProfilCSV.class).withHeader();
+        try {
+        	File csvFile = new ClassPathResource("static/users.csv").getFile();
+			List list = csvMapper.readerFor(ProfilCSV.class)
+			        .with(csvSchema.withColumnSeparator(CsvSchema.DEFAULT_COLUMN_SEPARATOR))
+			        .readValues(csvFile)
+			        .readAll();
+			System.out.println(list);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
 		return null;
 	}
 

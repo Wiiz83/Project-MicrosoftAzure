@@ -6,7 +6,7 @@ package org.miage.model;
  */
 public class ProfilCSV {
 	
-	public long id_user;
+	public String id_user;
 	
 	private boolean presence_ecoles;
 	
@@ -17,9 +17,12 @@ public class ProfilCSV {
 	private boolean presence_equipements;
 	
 	private boolean densite_forte;
+	
+	public ProfilCSV() {
+		
+	}
 
-	public ProfilCSV(long id_user, boolean presence_ecoles, boolean presence_colleges, boolean nb_entreprises_fort,
-			boolean presence_equipements, boolean densite_forte) {
+	public ProfilCSV(String id_user, boolean densite_forte, boolean nb_entreprises_fort, boolean presence_colleges, boolean presence_ecoles, boolean presence_equipements) {
 		super();
 		this.id_user = id_user;
 		this.presence_ecoles = presence_ecoles;
@@ -29,11 +32,11 @@ public class ProfilCSV {
 		this.densite_forte = densite_forte;
 	}
 
-	public long getId_user() {
+	public String getId_user() {
 		return id_user;
 	}
 
-	public void setId_user(long id_user) {
+	public void setId_user(String id_user) {
 		this.id_user = id_user;
 	}
 
