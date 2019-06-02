@@ -1,0 +1,10 @@
+org\miage\dao\MachineLearningAzureDAO.class
+org\miage\service\MatcherService.class
+org\miage\dao\LogicAppAzureDAO.class
+org\miage\dao\CSVReaderDAO.class
+org\miage\model\Formulaire.class
+org\miage\model\Commune.class
+org\miage\ProjectMicrosoftAzureApplication.class
+org\miage\model\Classement.class
+org\miage\model\ProfilCSV.class
+org\miage\controller\CommuneController.class
