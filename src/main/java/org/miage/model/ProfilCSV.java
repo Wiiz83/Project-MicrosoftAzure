@@ -1,9 +1,14 @@
 package org.miage.model;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 /**
  * @author uzanl
  * Représente le contenu d'une ligne du fichier profils.csv
  */
+
+@JsonPropertyOrder({ "id_user", "densite_forte", "nb_entreprises_fort", "presence_colleges", "presence_ecoles", "presence_equipements" })
+
 public class ProfilCSV {
 	
 	public String id_user;
@@ -79,5 +84,14 @@ public class ProfilCSV {
 	public void setDensite_forte(boolean densite_forte) {
 		this.densite_forte = densite_forte;
 	}
+
+	@Override
+	public String toString() {
+		return "ProfilCSV [id_user=" + id_user + ", presence_ecoles=" + presence_ecoles + ", presence_colleges="
+				+ presence_colleges + ", nb_entreprises_fort=" + nb_entreprises_fort + ", presence_equipements="
+				+ presence_equipements + ", densite_forte=" + densite_forte + "]";
+	}
+	
+	
 
 }

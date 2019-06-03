@@ -20,7 +20,7 @@ public class CSVReaderUTest {
 	@Test
 	public void testProfilsReader() {
 		List<ProfilCSV> listProfil = csvReader.loadProfils();
-		System.out.println(listProfil.size());
+		System.out.println(listProfil);
 	}
 
 }

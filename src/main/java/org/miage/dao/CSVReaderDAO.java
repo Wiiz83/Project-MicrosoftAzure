@@ -76,6 +76,8 @@ public class CSVReaderDAO {
 		
 		
 		CsvMapper csvMapper = new CsvMapper();
+		csvMapper.disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
+
         CsvSchema csvSchema = csvMapper.typedSchemaFor(ProfilCSV.class).withHeader();
         try {
         	File csvFile = new ClassPathResource("static/users.csv").getFile();
