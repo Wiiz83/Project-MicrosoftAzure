@@ -5,9 +5,22 @@ public class Formulaire {
     private String ecoles;
     private String colleges;
     private String entreprises;
-    private String sprotifs;
+    private String sportifs;
     private String densite;
-    
+
+	public Formulaire() {
+		
+	}
+	
+	public Formulaire(String ecoles, String colleges, String entreprises, String sportifs, String densite) {
+		super();
+		this.ecoles = ecoles;
+		this.colleges = colleges;
+		this.entreprises = entreprises;
+		this.sportifs = sportifs;
+		this.densite = densite;
+	}
+	
 	public String getEcoles() {
 		return ecoles;
 	}
@@ -26,11 +39,11 @@ public class Formulaire {
 	public void setEntreprises(String entreprises) {
 		this.entreprises = entreprises;
 	}
-	public String getSprotifs() {
-		return sprotifs;
+	public String getSportifs() {
+		return sportifs;
 	}
-	public void setSprotifs(String sprotifs) {
-		this.sprotifs = sprotifs;
+	public void setSportifs(String sportifs) {
+		this.sportifs = sportifs;
 	}
 	public String getDensite() {
 		return densite;
