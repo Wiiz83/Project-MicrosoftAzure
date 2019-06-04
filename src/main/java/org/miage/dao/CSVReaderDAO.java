@@ -46,16 +46,28 @@ public class CSVReaderDAO {
 	
 	
 	public List<ProfilCSV> loadProfils() {
+
 		CsvMapper csvMapper = new CsvMapper();
 		csvMapper.disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
 
-        CsvSchema csvSchema = csvMapper.typedSchemaFor(ProfilCSV.class).withHeader();
+        CsvSchema csvSchema = csvMapper
+        		.typedSchemaFor(ProfilCSV.class)
+        		.withHeader()
+        		.withColumnSeparator(CsvSchema.DEFAULT_COLUMN_SEPARATOR);
+        
         try {
         	File csvFile = new ClassPathResource("static/users.csv").getFile();
-			List<Object> list = csvMapper.readerFor(ProfilCSV.class)
-			        .with(csvSchema.withColumnSeparator(CsvSchema.DEFAULT_COLUMN_SEPARATOR))
+        	MappingIterator<ProfilCSV> dataIterator = csvMapper
+                    .readerFor(ProfilCSV.class)
+                    .with(csvSchema)
+                    .readValues(csvFile);
+        	return dataIterator.readAll();
+        	/*
+			List<ProfilCSV> list = csvMapper.readerFor(ProfilCSV.class)
+			        .with(csvSchema)
 			        .readValues(csvFile)
 			        .readAll();
+			        */
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

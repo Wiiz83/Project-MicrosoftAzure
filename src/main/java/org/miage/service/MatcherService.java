@@ -2,6 +2,7 @@ package org.miage.service;
 
 import org.miage.dao.CSVReaderDAO;
 import org.miage.dao.LogicAppAzureDAO;
+import org.miage.dao.MachineLearningAzureDAO;
 import org.miage.model.Classement;
 import org.miage.model.Commune;
 import org.miage.model.Formulaire;
@@ -20,16 +21,30 @@ import java.util.function.Predicate;
 @Service
 public class MatcherService {
 	
+	private static ArrayList<Classement> classements = new ArrayList<Classement>();
+	
 	@Autowired
 	private LogicAppAzureDAO logicApp;
 	
 	@Autowired
+	private MachineLearningAzureDAO machineLearningDAO;
+	
+	@Autowired
 	private CSVReaderDAO csvReader;
 	
-	public List<Classement> construireClassementVilles(Formulaire formulaire){
+	public Classement construireClassementVilles(Formulaire formulaire){
 		ProfilCSV profilEnCours = getProfilFromFormulaire(formulaire);
-		
-		return null;
+		Classement classement = machineLearningDAO.getRecommandations(profilEnCours);
+		MatcherService.classements.add(classement);
+		return classement;
+	}
+	
+	public List<Integer> getAllId(){
+		List<Integer> list = new ArrayList<Integer>();
+		for (Classement classement : MatcherService.classements) {
+			list.add(classement.getId());
+		}
+		return list;
 	}
 	
 	public void updateDetailsCommunes() {

@@ -15,16 +15,15 @@ public class CommuneController {
 	@Autowired
 	private MatcherService matcherService;
 
-	@GetMapping("/greeting")
+	@GetMapping("/feedback")
 	public String greetingForm(Model model) {
-		model.addAttribute("formulaire", new Formulaire());
-		return "greeting";
+		model.addAttribute("ids", matcherService.getAllId());
+		return "feedback";
 	}
 
 	@PostMapping("/formulaire")
-	public String greetingSubmit(@ModelAttribute Formulaire formulaire) {
-		matcherService.construireClassementVilles(formulaire);
-		System.out.println(formulaire.getColleges());
+	public String greetingSubmit(@ModelAttribute Formulaire formulaire, Model model) {
+		model.addAttribute("ids", matcherService.construireClassementVilles(formulaire));
 		return "result";
 	}
 

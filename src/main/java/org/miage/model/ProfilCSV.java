@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 
 @JsonPropertyOrder({ "id_user", "densite_forte", "nb_entreprises_fort", "presence_colleges", "presence_ecoles", "presence_equipements" })
-
 public class ProfilCSV {
 	
 	public String id_user;
