@@ -6,10 +6,9 @@
 </head>
 <body>
 	<h1>Form</h1>
-	<form action="#" th:action="@{/formulaire}" th:object="${formulaire}" method="post">
+	<form action="#" th:action="@{/recommandations}" th:object="${utilisateur}" method="post">
 		<select class="form-control" id="dropOperator">
-	    	<option value="0">select operator</option>
-	    	<option th:each="id : ${ids}" th:value="${id}" th:text="${id}"></option>
+	    	<option th:each="userId : ${ids}" th:value="${userId}" th:text="${userId}"></option>
 	    </select>
 	    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>

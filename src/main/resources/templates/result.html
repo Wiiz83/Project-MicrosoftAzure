@@ -6,11 +6,37 @@
 </head>
 <body>
 	<h1>Result</h1>
-    <p th:text="'id: ' + ${formulaire.ecoles}" />
-    <p th:text="'content: ' + ${formulaire.colleges}" />
-    <p th:text="'id: ' + ${formulaire.entreprises}" />
-    <p th:text="'content: ' + ${formulaire.sprotifs}" />
-    <p th:text="'content: ' + ${formulaire.densite}" />
-    <a href="/greeting">Submit another message</a>
+	<p th:text="'id: ' + ${recommandations.userId}" />
+	<table>
+		<tr>
+	        <th scope="col" style="text-align:left;">Rang</th>
+	        <th scope="col" style="text-align:left;">Nom</th>
+	        <th scope="col" style="text-align:left;">Code</th>
+	        <th scope="col" style="text-align:left;">Code postaux</th>
+	        <th scope="col" style="text-align:left;">Surface</th>
+	        <th scope="col" style="text-align:left;">Population</th>
+	        <th scope="col" style="text-align:left;">Nombre d'entreprises</th>
+	        <th scope="col" style="text-align:left;">Nombre d'écoles</th>
+	        <th scope="col" style="text-align:left;">Nombre de collèges</th>
+	        <th scope="col" style="text-align:left;">Nombre d'équipements sportifs</th>
+	        <th scope="col" style="text-align:left;">Densité de population</th>
+	    </tr>
+	   <th:block th:each="commune : ${recommandations.communes}">
+	      <tr>
+	         <td th:text="${commune.key}">...</td>
+	         <td th:text="${commune.value.nom}">...</td>
+	         <td th:text="${commune.value.code}">...</td>
+	         <td th:text="${commune.value.codesPostaux}">...</td>
+	         <td th:text="${commune.value.surface}">...</td>
+	         <td th:text="${commune.value.population}">...</td>
+	         <td th:text="${commune.value.entreprises}">...</td>
+	         <td th:text="${commune.value.ecoles}">...</td>
+	         <td th:text="${commune.value.colleges}">...</td>
+	         <td th:text="${commune.value.equipements}">...</td>
+	         <td th:text="${commune.value.densite}">...</td>
+	      </tr>
+	   </th:block>
+	</table>
+    <a href="/">Retour à l'accueil</a>
 </body>
 </html>

@@ -1,22 +1,24 @@
 package org.miage.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * @author uzanl
  * Classe représentant l'objet retourné à l'utilisateur avec le classement des villes
  */
-public class Classement {
+public class Recommandation {
 	
-	private static int count = 0;
+	public static ArrayList<Recommandation> recommandations = new ArrayList<Recommandation>();
 	
-	private int id;
+	public int userId;
 	
-	private HashMap<Integer, Commune> communes;
+	public HashMap<Integer, Commune> communes;
 	
-	public Classement() {
-		this.setId(count++);
+	public Recommandation(int userId) {
+		this.userId = userId;
 		this.communes = new HashMap<Integer, Commune>();
+		recommandations.add(this);
 	}
 
 	public void addCommune(Integer rank, Commune commune) {
@@ -24,11 +26,11 @@ public class Classement {
 	}
 
 	public int getId() {
-		return id;
+		return userId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int userId) {
+		this.userId = userId;
 	}
 	
 	public HashMap<Integer, Commune> getCommunes() {
@@ -38,4 +40,11 @@ public class Classement {
 	public void setCommunes(HashMap<Integer, Commune> communes) {
 		this.communes = communes;
 	}
+
+	@Override
+	public String toString() {
+		return "Recommandation [userId=" + userId + ", communes=" + communes.toString() + "]";
+	}
+	
+	
 }

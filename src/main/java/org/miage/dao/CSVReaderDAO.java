@@ -62,12 +62,6 @@ public class CSVReaderDAO {
                     .with(csvSchema)
                     .readValues(csvFile);
         	return dataIterator.readAll();
-        	/*
-			List<ProfilCSV> list = csvMapper.readerFor(ProfilCSV.class)
-			        .with(csvSchema)
-			        .readValues(csvFile)
-			        .readAll();
-			        */
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

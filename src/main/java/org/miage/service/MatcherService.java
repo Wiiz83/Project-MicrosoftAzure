@@ -1,18 +1,11 @@
 package org.miage.service;
 
-import org.miage.dao.CSVReaderDAO;
 import org.miage.dao.LogicAppAzureDAO;
 import org.miage.dao.MachineLearningAzureDAO;
-import org.miage.model.Classement;
-import org.miage.model.Commune;
-import org.miage.model.Formulaire;
-import org.miage.model.ProfilCSV;
+import org.miage.model.Recommandation;
+import org.miage.model.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * @author uzanl
@@ -21,8 +14,6 @@ import java.util.function.Predicate;
 @Service
 public class MatcherService {
 	
-	private static ArrayList<Classement> classements = new ArrayList<Classement>();
-	
 	@Autowired
 	private LogicAppAzureDAO logicApp;
 	
@@ -30,29 +21,21 @@ public class MatcherService {
 	private MachineLearningAzureDAO machineLearningDAO;
 	
 	@Autowired
-	private CSVReaderDAO csvReader;
+	private org.miage.dao.JSONReaderDAO JSONReaderDAO;
 	
-	public Classement construireClassementVilles(Formulaire formulaire){
-		ProfilCSV profilEnCours = getProfilFromFormulaire(formulaire);
-		Classement classement = machineLearningDAO.getRecommandations(profilEnCours);
-		MatcherService.classements.add(classement);
+	public Recommandation construireClassementVilles(Utilisateur utilisateur){
+		JSONReaderDAO.loadCommunes();
+		Recommandation classement = machineLearningDAO.getRecommandations(utilisateur);
 		return classement;
 	}
-	
-	public List<Integer> getAllId(){
-		List<Integer> list = new ArrayList<Integer>();
-		for (Classement classement : MatcherService.classements) {
-			list.add(classement.getId());
-		}
-		return list;
+
+	public Recommandation getRecommandations(Utilisateur utilisateur){
+		int userId = utilisateur.getId_user();
+		Recommandation recommandation = Recommandation.recommandations.stream().filter((r) -> r.getId() == userId).findAny().orElse(null);
+		return recommandation;
 	}
 	
-	public void updateDetailsCommunes() {
-		List<Commune> communes = logicApp.getCommunes();
-		
-		
-	}
-	
+	/*
 	public ProfilCSV getProfilFromFormulaire(Formulaire formulaire) {
 		List<ProfilCSV> profils = csvReader.loadProfils();
 		
@@ -145,6 +128,6 @@ public class MatcherService {
 	
 		Predicate<ProfilCSV> pred = listePredicats.stream().reduce(Predicate::and).orElse(x->true);
 		return profils.stream().filter(pred).findAny().orElse(null);
-	}
+	}*/
 
 }

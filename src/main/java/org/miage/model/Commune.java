@@ -1,9 +1,12 @@
 package org.miage.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Commune {
+	
+	public static ArrayList<Commune> communes = new ArrayList<Commune>();
 	
 	/*
     {
@@ -48,7 +51,7 @@ public class Commune {
 	private int equipements;
 
 	public Commune() {
-
+		communes.add(this);
 	}
 
 	public String getNom() {
@@ -163,6 +166,18 @@ public class Commune {
 		this.equipements = equipements;
 	}
 
+	public static ArrayList<Commune> getAllCommunes() {
+		return communes;
+	}
+
+	@Override
+	public String toString() {
+		return "Commune [nom=" + nom + ", code=" + code + ", codesPostaux=" + codesPostaux + ", surface=" + surface
+				+ ", codeDepartement=" + codeDepartement + ", codeRegion=" + codeRegion + ", population=" + population
+				+ ", departement=" + departement + ", region=" + region + ", entreprises=" + entreprises + ", ecoles="
+				+ ecoles + ", colleges=" + colleges + ", densite=" + densite + ", equipements=" + equipements + "]";
+	}
+	
 	
 
 }
